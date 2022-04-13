@@ -24,6 +24,7 @@ class Api {
   getUserData() {
     return fetch(this.#baseUrl + '/users/me', {
       headers: this.#headers,
+      credentials: 'include',
     }).then(this.#handleResponse);
   }
 
@@ -31,6 +32,7 @@ class Api {
     return fetch(this.#baseUrl + '/users/me', {
       method: 'PATCH',
       headers: this.#headers,
+      credentials: 'include',
       body: JSON.stringify(inputData),
     }).then(this.#handleResponse);
   }
