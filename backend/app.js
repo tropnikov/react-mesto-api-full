@@ -1,14 +1,17 @@
-const express = require('express');
-const mongoose = require('mongoose');
 const { errors } = require('celebrate');
-const usersRoutes = require('./routes/usersRoutes');
-const cardsRoutes = require('./routes/cardsRoutes');
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const mongoose = require('mongoose');
 const { login, createUser } = require('./controllers/usersController');
-const errorHandler = require('./middlewares/errorHandler');
-const auth = require('./middlewares/auth');
-const { register, signin } = require('./middlewares/validation');
 const NotFoundError = require('./errors/NotFoundError');
+const auth = require('./middlewares/auth');
+const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const cors = require('./middlewares/corsHandler');
+const { register, signin } = require('./middlewares/validation');
+const cardsRoutes = require('./routes/cardsRoutes');
+const usersRoutes = require('./routes/usersRoutes');
 
 const { PORT = 3000 } = process.env;
 
@@ -19,6 +22,16 @@ mongoose.connect('mongodb://localhost:27017/mestodb');
 app.use(express.json());
 
 app.use(requestLogger); // логгер запросов
+
+app.use(cors);
+
+app.use(helmet());
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // за 15 минут
+  max: 100, // можно совершить максимум 100 запросов с одного IP
+});
+app.use(limiter);
 
 app.post('/signin', signin, login);
 app.post('/signup', register, createUser);

@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://tma.nomoredomains.work';
 
 const handleResponse = (response) => {
   return response.ok

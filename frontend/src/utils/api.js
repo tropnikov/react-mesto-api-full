@@ -1,4 +1,4 @@
-import { token, serverUrl } from './utils.js';
+import { serverUrl } from './utils.js';
 
 class Api {
   #baseUrl;
@@ -83,7 +83,7 @@ class Api {
 const api = new Api({
   baseUrl: serverUrl,
   headers: {
-    authorization: token,
+    // authorization: token,
     'Content-Type': 'application/json',
   },
 });
