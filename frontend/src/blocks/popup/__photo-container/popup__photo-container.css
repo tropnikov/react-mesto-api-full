@@ -1,0 +1,11 @@
+.popup__photo-container {
+  position: relative;
+  background-color: transparent;
+  margin: 0 auto;
+  font-size: 0;
+  box-sizing: border-box;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

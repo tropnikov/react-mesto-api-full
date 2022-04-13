@@ -1,0 +1,9 @@
+.place__photo {
+  border-radius: 10px 10px 0 0;
+  max-height: 282px;
+  object-fit: cover;
+  height: 100%;
+  cursor: pointer;
+  object-position: top;
+  overflow: hidden;
+}

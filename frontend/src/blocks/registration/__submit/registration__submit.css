@@ -1,0 +1,11 @@
+.registration__submit {
+  background: #ffffff;
+  border-radius: 2px;
+  text-align: center;
+  margin-top: 0;
+  color: #000000;
+  margin-bottom: 15px;
+}
+.registration__submit:hover {
+  opacity: 0.85;
+}

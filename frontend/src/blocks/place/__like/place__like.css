@@ -1,0 +1,18 @@
+.place__like {
+  border-style: none;
+  width: 22px;
+  flex-basis: 22px;
+  flex-shrink: 0;
+  background-image: url(../../../images/like-button.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+  background-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .place__like:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+}

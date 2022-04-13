@@ -1,0 +1,10 @@
+.header__user {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: "Inter", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: right;
+}

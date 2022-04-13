@@ -1,0 +1,23 @@
+.page__container {
+  max-width: 880px;
+  width: calc(100% - 400px);
+  min-width: 320px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 45px 0 60px;
+}
+
+@media screen and (max-width: 1080px) {
+  .page__container {
+    width: calc(100% - 140px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .page__container {
+    width: 100%;
+    padding: 28px 0 0;
+  }
+}

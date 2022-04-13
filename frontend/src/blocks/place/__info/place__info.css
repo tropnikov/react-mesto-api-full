@@ -1,0 +1,7 @@
+.place__info {
+  width: 87%;
+  margin: 22px auto 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

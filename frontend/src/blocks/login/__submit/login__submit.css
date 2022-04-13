@@ -1,0 +1,11 @@
+.login__submit {
+  background: #ffffff;
+  border-radius: 2px;
+  text-align: center;
+  margin-top: 0;
+  color: #000000;
+  margin-bottom: 116px;
+}
+.login__submit:hover {
+  opacity: 0.85;
+}
