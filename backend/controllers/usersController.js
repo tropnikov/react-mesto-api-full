@@ -158,7 +158,7 @@ module.exports.login = (req, res, next) => {
     });
 };
 
-module.exports.logout = (req, res) => {
+module.exports.logout = (req, res, next) => {
   // const { email } = req.body;
   // req.logOut();
   res.status(200).clearCookie('token', {
@@ -166,5 +166,5 @@ module.exports.logout = (req, res) => {
     sameSite: true,
   });
   // .catch(next);
-  // return res.send({ message: `Вы вышли ${email}` }).catch(next);
+  return res.send({ message: 'Вы вышли' }).catch(next);
 };
