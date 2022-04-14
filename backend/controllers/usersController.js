@@ -133,11 +133,9 @@ module.exports.login = (req, res, next) => {
         expiresIn: '7d',
       });
       return res
-        .cookie('token', token, {
+        .cookies('token', token, {
           maxAge: 36000000 * 24 * 7,
           httpOnly: true,
-          sameSite: 'None',
-          secure: true,
         })
         .json({ message: 'Успешная авторизация' });
       // res.status(200).send({ token });
