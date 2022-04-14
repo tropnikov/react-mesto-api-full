@@ -25,12 +25,12 @@ app.use(express.json());
 
 app.use(
   cors({
-    credentials: true,
     origin: [
       'https://tma.nomoredomains.work',
       'http://tma.nomoredomains.work',
       'localhost:3000',
     ],
+    credentials: true,
   }),
 );
 
