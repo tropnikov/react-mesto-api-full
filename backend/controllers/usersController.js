@@ -8,7 +8,7 @@ const UnauthorizedError = require('../errors/UnauthorizedError');
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send({ users }))
+    .then((users) => res.send(users))
     .catch(next);
 };
 
@@ -20,7 +20,7 @@ module.exports.getProfile = (req, res, next) => {
         `Запрашиваемый пользователь с id ${req.user._id} не найден`,
       );
     })
-    .then((user) => res.status(200).send({ user }))
+    .then((user) => res.status(200).send(user))
     .catch((err) => next(err));
 };
 
@@ -31,7 +31,7 @@ module.exports.getUserById = (req, res, next) => {
         `Запрашиваемый пользователь с id ${req.params.userId} не найден`,
       );
     })
-    .then((user) => res.status(200).send({ user }))
+    .then((user) => res.status(200).send(user))
     .catch((err) => {
       if (err.name === 'CastError') {
         next(new ValidationError('Невалидный id пользователя'));
@@ -64,7 +64,7 @@ module.exports.createUser = (req, res, next) => {
     .then((user) => {
       const userWithoutPass = user.toObject();
       delete userWithoutPass.password;
-      res.status(200).send({ user: userWithoutPass });
+      res.status(200).send(userWithoutPass);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -90,7 +90,7 @@ module.exports.updateProfile = (req, res, next) => {
         `Запрашиваемый пользователь с id ${req.params.userId} не найден`,
       );
     })
-    .then((user) => res.status(200).send({ user }))
+    .then((user) => res.status(200).send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError('Невалидный id пользователя'));
@@ -115,7 +115,7 @@ module.exports.updateAvatar = (req, res, next) => {
         `Запрашиваемый пользователь с id ${req.params.userId} не найден`,
       );
     })
-    .then((user) => res.status(200).send({ user }))
+    .then((user) => res.status(200).send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError('Невалидный id пользователя'));
