@@ -1,10 +1,11 @@
+const { NODE_ENV, SECRET_KEY } = process.env;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel');
 const ConflictError = require('../errors/ConflictError');
 const NotFoundError = require('../errors/NotFoundError');
-const ValidationError = require('../errors/ValidationError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
+const ValidationError = require('../errors/ValidationError');
+const User = require('../models/userModel');
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
@@ -129,15 +130,17 @@ module.exports.login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', {
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? SECRET_KEY : 'some-dev-secret-key', {
         expiresIn: '7d',
       });
       return res
         .cookie('token', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
+          sameSite: true,
         })
-        .json({ message: 'Успешная авторизация' });
+        .end();
+      // .json({ message: 'Успешная авторизация' });
       // res.status(200).send({ token });
       // res
       //   .cookie('jwt', token, {

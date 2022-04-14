@@ -56,14 +56,15 @@ class Api {
   }
 
   changeLikeCardStatus(cardId, like) {
-    return fetch(this.#baseUrl + `/cards/likes/${cardId}`, {
+    return fetch(this.#baseUrl + `/cards/${cardId}/likes`, {
       method: like ? 'PUT' : 'DELETE',
+      credentials: 'include',
       headers: this.#headers,
     }).then(this.#handleResponse);
   }
 
   likeCard(cardId) {
-    return fetch(this.#baseUrl + `/cards/likes/${cardId}`, {
+    return fetch(this.#baseUrl + `/cards/${cardId}/likes`, {
       method: 'PUT',
       credentials: 'include',
       headers: this.#headers,
@@ -71,7 +72,7 @@ class Api {
   }
 
   dislikeCard(cardId) {
-    return fetch(this.#baseUrl + `/cards/likes/${cardId}`, {
+    return fetch(this.#baseUrl + `/cards/${cardId}/likes`, {
       method: 'DELETE',
       credentials: 'include',
       headers: this.#headers,

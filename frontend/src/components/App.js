@@ -44,7 +44,6 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [isCardsLoadError, setIsCardsLoadError] = React.useState(false);
 
-
   // * mounting
 
   React.useEffect(() => {
@@ -58,31 +57,34 @@ function App() {
     //   });
 
     if (loggedIn) {
-      api.getUserData()
-      .then((user) => {
-        setCurrentUser(user);
-      })
-      .catch(err => console.log(`Загрузка информации о пользователе: ${err}`));
+      api
+        .getUserData()
+        .then((user) => {
+          setCurrentUser(user);
+        })
+        .catch((err) =>
+          console.log(`Загрузка информации о пользователе: ${err}`)
+        );
 
       // setIsCardsLoading(true);
       setIsCardsLoadError();
-      api.getInitialCards()
-      .then((cards) => {
-          setCards(cards);
-      })
-      .catch(() => setIsCardsLoadError(true));
+      api
+        .getInitialCards()
+        .then((cards) => {
+          setCards(cards.reverse());
+        })
+        .catch(() => setIsCardsLoadError(true));
       // .finally(() => setIsCardsLoading(false));
     }
   }, [loggedIn]);
 
+  React.useEffect(() => {
+    authCheck();
+  }, []);
 
-  // React.useEffect(() => {
-  //   tokenCheck();
-  // }, []);
-
-  // React.useEffect(() => {
-  //   loggedIn && history.push('/');
-  // }, [loggedIn]);
+  React.useEffect(() => {
+    loggedIn && history.push('/');
+  }, [loggedIn]);
 
   React.useEffect(() => {
     const closeByEscape = (evt) => {
@@ -157,7 +159,7 @@ function App() {
   //* Cards
 
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
 
     api
       .changeLikeCardStatus(card._id, !isLiked)
@@ -172,7 +174,7 @@ function App() {
   };
 
   const handleCardDelete = (card) => {
-    const isOwn = card.owner._id === currentUser._id;
+    const isOwn = card.owner === currentUser._id;
     if (isOwn) {
       api
         .deleteCard(card._id)
@@ -198,6 +200,21 @@ function App() {
   };
 
   // * Auth
+
+  const authCheck = () => {
+    // const token = localStorage.getItem('token');
+    api
+      .getUserData()
+      .then((response) => {
+        if (response) {
+          setUserEmail(response.email);
+          setLoggedIn(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   // const tokenCheck = () => {
   //   const token = localStorage.getItem('token');
@@ -240,14 +257,14 @@ function App() {
   const handleLogin = (email, password) => {
     auth
       .login(email, password)
-      .then((response) => {
+      .then(() => {
         // if (response.token) {
-          if (response.message) {
-          // localStorage.setItem('token', response.token);
-          setUserEmail(email);
-          setLoggedIn(true);
-          history.push('/');
-        }
+        // if (response.message) {
+        // localStorage.setItem('token', response.token);
+        setUserEmail(email);
+        setLoggedIn(true);
+        history.push('/');
+        // }
       })
       .catch((err) => {
         console.log(err);
@@ -255,7 +272,7 @@ function App() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    // localStorage.removeItem('token');
     setUserEmail('');
     setLoggedIn(false);
   };
