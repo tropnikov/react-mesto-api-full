@@ -3,7 +3,7 @@ export const BASE_URL = 'https://api.tma.nomoredomains.work';
 const handleResponse = (response) => {
   return response.ok
     ? response.json()
-    : Promise.reject(`Ошибка: ${response.status}`);
+    : Promise.reject(`Ошибка: ${response.status}`, response);
 };
 
 export const register = (email, password) => {
