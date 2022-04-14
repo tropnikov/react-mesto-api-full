@@ -11,7 +11,6 @@ function Main({
   onCardLike,
   onCardDelete,
   cards,
-  isCardsError,
 }) {
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -49,7 +48,7 @@ function Main({
         ></button>
       </section>
 
-      {cards && !isCardsError && cards.length !== 0 && (
+      {cards && cards.length !== 0 && (
         <section className="places page__section">
           <ul className="places__list">
             {cards.map((card) => {

@@ -42,8 +42,6 @@ function App() {
     React.useState(false);
   const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
-  const [isCardsLoadError, setIsCardsLoadError] = React.useState(false);
-
   // * mounting
 
   React.useEffect(() => {
@@ -66,15 +64,12 @@ function App() {
           console.log(`Загрузка информации о пользователе: ${err}`)
         );
 
-      // setIsCardsLoading(true);
-      setIsCardsLoadError();
       api
         .getInitialCards()
         .then((cards) => {
           setCards(cards.reverse());
         })
-        .catch(() => setIsCardsLoadError(true));
-      // .finally(() => setIsCardsLoading(false));
+        .catch((err) => console.log(`Загрузка карточек: ${err}`));
     }
   }, [loggedIn]);
 
@@ -295,7 +290,6 @@ function App() {
             onCardLike={handleCardLike}
             onCardDelete={handleCardDelete}
             cards={cards}
-            isCardsError={isCardsLoadError}
           />
 
           <Route path="/sign-up">
