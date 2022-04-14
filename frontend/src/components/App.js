@@ -42,27 +42,47 @@ function App() {
     React.useState(false);
   const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
+  const [isCardsLoadError, setIsCardsLoadError] = React.useState(false);
+
 
   // * mounting
 
   React.useEffect(() => {
-    Promise.all([api.getUserData(), api.getInitialCards()])
-      .then(([userData, cards]) => {
+    // Promise.all([api.getUserData(), api.getInitialCards()])
+    //   .then(([userData, cards]) => {
+    //     setCurrentUser(userData);
+    //     setCards(cards);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    if (loggedIn) {
+      api.getUserData()
+      .then((userData) => {
         setCurrentUser(userData);
-        setCards(cards);
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+      .catch(err => console.log(`Загрузка информации о пользователе: ${err}`));
+
+      // setIsCardsLoading(true);
+      setIsCardsLoadError();
+      api.getInitialCards()
+      .then((cards) => {
+          setCards(cards);
+      })
+      .catch(() => setIsCardsLoadError(true));
+      // .finally(() => setIsCardsLoading(false));
+    }
+  }, [loggedIn]);
+
 
   // React.useEffect(() => {
   //   tokenCheck();
   // }, []);
 
-  React.useEffect(() => {
-    loggedIn && history.push('/');
-  }, [loggedIn]);
+  // React.useEffect(() => {
+  //   loggedIn && history.push('/');
+  // }, [loggedIn]);
 
   React.useEffect(() => {
     const closeByEscape = (evt) => {
@@ -258,6 +278,7 @@ function App() {
             onCardLike={handleCardLike}
             onCardDelete={handleCardDelete}
             cards={cards}
+            isCardsError={isCardsLoadError}
           />
 
           <Route path="/sign-up">

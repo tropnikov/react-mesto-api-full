@@ -11,6 +11,7 @@ function Main({
   onCardLike,
   onCardDelete,
   cards,
+  isCardsError
 }) {
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -48,21 +49,23 @@ function Main({
         ></button>
       </section>
 
-      <section className="places page__section">
-        <ul className="places__list">
-          {cards.map((card) => {
-            return (
-              <Card
-                key={card._id}
-                card={card}
-                onCardClick={handleCardClick}
-                onCardLike={onCardLike}
-                onCardDelete={onCardDelete}
-              />
-            );
-          })}
-        </ul>
-      </section>
+      {cards && !isCardsError && (
+        <section className="places page__section">
+          <ul className="places__list">
+            {cards.map((card) => {
+              return (
+                <Card
+                  key={card._id}
+                  card={card}
+                  onCardClick={handleCardClick}
+                  onCardLike={onCardLike}
+                  onCardDelete={onCardDelete}
+                />
+              );
+            })}
+          </ul>
+        </section>
+      )}
     </main>
   );
 }
