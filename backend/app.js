@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 const { login, createUser } = require('./controllers/usersController');
 const NotFoundError = require('./errors/NotFoundError');
-const auth = require('./middlewares/auth');
+const authUser = require('./middlewares/auth');
 // const cors = require('./middlewares/corsHandler');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -58,7 +58,7 @@ app.use(cookieParser());
 app.post('/signin', signin, login);
 app.post('/signup', register, createUser);
 
-app.use(auth);
+app.use(authUser);
 
 app.use('/users', usersRoutes);
 app.use('/cards', cardsRoutes);
