@@ -28,14 +28,13 @@ export const login = (email, password) => {
   }).then(handleResponse);
 };
 
-export const logout = (email) => {
+export const logout = () => {
   return fetch(`${BASE_URL}/signout`, {
     method: 'POST',
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ email }),
   }).then(handleResponse);
 };
 

@@ -269,7 +269,7 @@ function App() {
   const handleLogout = () => {
     // localStorage.removeItem('token');
     auth
-      .logout(userEmail)
+      .logout()
       .then(() => {
     setUserEmail('');
     setLoggedIn(false);
