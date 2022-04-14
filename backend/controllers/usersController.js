@@ -158,12 +158,12 @@ module.exports.login = (req, res, next) => {
     });
 };
 
-module.exports.logout = (req, res, next) => {
+module.exports.logout = (req, res) => {
   // const { email } = req.body;
   // req.logOut();
   res.status(200).clearCookie('token', {
     httpOnly: true,
     sameSite: true,
-  }).catch(next);
+  }).json({ message: 'Вы вышли' });
   // return res.send({ message: 'Вы вышли' }).catch(next);
 };
