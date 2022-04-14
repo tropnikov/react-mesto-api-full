@@ -92,6 +92,7 @@ const api = new Api({
   baseUrl: serverUrl,
   headers: {
     // authorization: token,
+    'Accept': 'application/json',
     'Content-Type': 'application/json',
   },
 });

@@ -132,9 +132,14 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, 'some-secret-key', {
         expiresIn: '7d',
       });
-      return res.cookie('jwt', token, {
-        maxAge: 3600000 * 24 * 7, httpOnly: true,
-      }).json({ message: 'Успешная авторизация' });
+      return res
+        .cookie('jwt', token, {
+          maxAge: 36000000 * 24 * 7,
+          httpOnly: true,
+          sameSite: 'None',
+          secure: true,
+        })
+        .json({ message: 'Успешная авторизация' });
       // res.status(200).send({ token });
       // res
       //   .cookie('jwt', token, {

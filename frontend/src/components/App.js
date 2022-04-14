@@ -56,9 +56,9 @@ function App() {
       });
   }, []);
 
-  React.useEffect(() => {
-    tokenCheck();
-  }, []);
+  // React.useEffect(() => {
+  //   tokenCheck();
+  // }, []);
 
   React.useEffect(() => {
     loggedIn && history.push('/');
@@ -179,22 +179,22 @@ function App() {
 
   // * Auth
 
-  const tokenCheck = () => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      auth
-        .checkTokenValidity(token)
-        .then((response) => {
-          if (response) {
-            setUserEmail(response.data.email);
-            setLoggedIn(true);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
+  // const tokenCheck = () => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     auth
+  //       .checkTokenValidity(token)
+  //       .then((response) => {
+  //         if (response) {
+  //           setUserEmail(response.data.email);
+  //           setLoggedIn(true);
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // };
 
   const handleRegister = (email, password) => {
     auth
@@ -221,8 +221,9 @@ function App() {
     auth
       .login(email, password)
       .then((response) => {
-        if (response.token) {
-          localStorage.setItem('token', response.token);
+        // if (response.token) {
+          if (response.message) {
+          // localStorage.setItem('token', response.token);
           setUserEmail(email);
           setLoggedIn(true);
           history.push('/');
