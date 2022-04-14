@@ -130,16 +130,18 @@ module.exports.login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? SECRET_KEY : 'some-dev-secret-key', {
-        expiresIn: '7d',
+      const token = jwt.sign(
+        { _id: user._id },
+        NODE_ENV === 'production' ? SECRET_KEY : 'some-dev-secret-key',
+        {
+          expiresIn: '7d',
+        },
+      );
+      return res.cookie('token', token, {
+        maxAge: 3600000 * 24 * 7,
+        httpOnly: true,
+        sameSite: true,
       });
-      res
-        .cookie('token', token, {
-          maxAge: 3600000 * 24 * 7,
-          httpOnly: true,
-          sameSite: true,
-        })
-        .end();
       // .json({ message: 'Успешная авторизация' });
       // res.status(200).send({ token });
       // res
