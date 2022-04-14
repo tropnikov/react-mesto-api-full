@@ -165,7 +165,4 @@ module.exports.logout = (req, res, next) => {
       sameSite: true,
     })
     .catch(next);
-  req.session.destroy = () => {
-    res.redirect('/');
-  };
 };
