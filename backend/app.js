@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
-// const cors = require('cors');
+const cors = require('cors');
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const { login, createUser } = require('./controllers/usersController');
 const NotFoundError = require('./errors/NotFoundError');
 const auth = require('./middlewares/auth');
-const cors = require('./middlewares/corsHandler');
+// const cors = require('./middlewares/corsHandler');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { register, signin } = require('./middlewares/validation');
@@ -24,21 +24,21 @@ mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.use(express.json());
 
-// app.use(
-//   cors({
-//     origin: [
-//       'https://tma.nomoredomains.work',
-//       'http://tma.nomoredomains.work',
-//       'localhost:3000',
-//     ],
-//     credentials: true,
-//     allowedHeaders: ['Content-Type', 'Accept'],
-//   }),
-// );
+app.use(
+  cors({
+    origin: [
+      'https://tma.nomoredomains.work',
+      'http://tma.nomoredomains.work',
+      'localhost:3000',
+    ],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Accept'],
+  }),
+);
 
 app.use(requestLogger); // логгер запросов
 
-app.use(cors);
+// app.use(cors);
 
 app.use(helmet());
 
