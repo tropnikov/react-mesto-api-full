@@ -63,7 +63,7 @@ app.use(authUser);
 app.use('/users', usersRoutes);
 app.use('/cards', cardsRoutes);
 
-app.use('/signout', logout);
+app.post('/signout', logout);
 
 app.use((req, res, next) => {
   next(new NotFoundError('Страница не найдена =('));
