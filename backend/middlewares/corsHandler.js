@@ -18,6 +18,7 @@ const cors = (req, res, next) => {
       'Access-Control-Allow-Headers',
       headers['access-control-request-headers'],
     );
+    res.header('Access-Control-Allow-Credentials', true);
     return res.end();
   }
 
