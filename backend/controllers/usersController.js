@@ -164,7 +164,7 @@ module.exports.logout = (req, res) => {
   res.status(200).clearCookie('token', {
     httpOnly: true,
     sameSite: true,
-  }).send({ message: 'Вы вышли' }).redirect('/');
+  }).send({ message: 'Вы вышли' });
   // .catch(next);
   // return res.send({ message: 'Вы вышли' }).catch(next);
 };
