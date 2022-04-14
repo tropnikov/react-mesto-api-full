@@ -158,13 +158,13 @@ module.exports.login = (req, res, next) => {
     });
 };
 
-module.exports.logout = (req, res) => {
+module.exports.logout = (req, res, next) => {
   // const { email } = req.body;
   // req.logOut();
   res.status(200).clearCookie('token', {
     httpOnly: true,
     sameSite: true,
-  }).send({ message: 'Вы вышли' });
+  }).send({ message: 'Вы вышли' }).catch(next);
   // .catch(next);
   // return res.send({ message: 'Вы вышли' }).catch(next);
 };
