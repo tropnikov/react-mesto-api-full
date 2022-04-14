@@ -252,14 +252,14 @@ function App() {
   const handleLogin = (email, password) => {
     auth
       .login(email, password)
-      .then((res) => {
+      .then(() => {
         // if (response.token) {
-        if (res.message) {
+        // if (res.message) {
           // localStorage.setItem('token', response.token);
           setUserEmail(email);
           setLoggedIn(true);
           history.push('/');
-        }
+        // }
       })
       .catch((err) => {
         console.log(err);

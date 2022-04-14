@@ -143,7 +143,8 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
           sameSite: true,
         })
-        .json({ message: 'Успешная авторизация' });
+        .end();
+      // .json({ message: 'Успешная авторизация' });
       // res.status(200).send({ token });
       // res
       //   .cookie('jwt', token, {
