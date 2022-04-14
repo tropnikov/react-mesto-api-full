@@ -159,10 +159,11 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.logout = (req, res, next) => {
+  const { email } = req.body;
   req.logOut();
   res.status(200).clearCookie('token', {
     httpOnly: true,
     sameSite: true,
   });
-  res.send({ message: 'Вы вышли' }).catch(next);
+  res.send({ message: `Вы вышли ${email}` }).catch(next);
 };
