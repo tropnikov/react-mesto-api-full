@@ -47,13 +47,13 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
+app.use(cookieParser());
+
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
-
-app.use(cookieParser());
 
 app.post('/signin', signin, login);
 app.post('/signup', register, createUser);
