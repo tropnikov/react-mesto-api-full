@@ -57,13 +57,12 @@ app.use(cookieParser());
 
 app.post('/signin', signin, login);
 app.post('/signup', register, createUser);
+app.post('/signout', logout);
 
 app.use(authUser);
 
 app.use('/users', usersRoutes);
 app.use('/cards', cardsRoutes);
-
-app.post('/signout', logout);
 
 app.use((req, res, next) => {
   next(new NotFoundError('Страница не найдена =('));
