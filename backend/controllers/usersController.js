@@ -137,11 +137,12 @@ module.exports.login = (req, res, next) => {
           expiresIn: '7d',
         },
       );
-      return res.cookie('token', token, {
-        maxAge: 3600000 * 24 * 7,
-        httpOnly: true,
-        sameSite: true,
-      })
+      return res
+        .cookie('token', token, {
+          maxAge: 3600000 * 24 * 7,
+          httpOnly: true,
+          sameSite: true,
+        })
         .json({ message: 'Успешная авторизация' });
       // res.status(200).send({ token });
       // res
@@ -158,11 +159,10 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.logout = (req, res, next) => {
-  res
-    .status(200)
-    .clearCookie('token', {
-      httpOnly: true,
-      sameSite: true,
-    })
-    .catch(next);
+  req.logOut();
+  res.status(200).clearCookie('token', {
+    httpOnly: true,
+    sameSite: true,
+  });
+  res.send({ message: 'Вы вышли' }).catch(next);
 };
