@@ -59,8 +59,8 @@ function App() {
 
     if (loggedIn) {
       api.getUserData()
-      .then((userData) => {
-        setCurrentUser(userData);
+      .then((user) => {
+        setCurrentUser(user);
       })
       .catch(err => console.log(`Загрузка информации о пользователе: ${err}`));
 
