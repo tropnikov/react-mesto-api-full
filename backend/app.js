@@ -22,7 +22,12 @@ mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.use(express.json());
 
-app.use(cors());
+app.use(cors({
+  origin: ['https://tma.nomoredomains.work',
+    'http://tma.nomoredomains.work',
+    'localhost:3000'],
+  credentials: true,
+}));
 
 app.use(requestLogger); // логгер запросов
 
