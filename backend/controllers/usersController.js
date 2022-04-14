@@ -137,13 +137,11 @@ module.exports.login = (req, res, next) => {
           expiresIn: '7d',
         },
       );
-      return res
-        .cookie('token', token, {
-          maxAge: 3600000 * 24 * 7,
-          httpOnly: true,
-          sameSite: true,
-        })
-        .end();
+      return res.cookie('token', token, {
+        maxAge: 3600000 * 24 * 7,
+        httpOnly: true,
+        sameSite: true,
+      });
       // .json({ message: 'Успешная авторизация' });
       // res.status(200).send({ token });
       // res
