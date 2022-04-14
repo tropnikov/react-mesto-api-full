@@ -165,5 +165,5 @@ module.exports.logout = (req, res, next) => {
     httpOnly: true,
     sameSite: true,
   }).catch(next);
-  res.send({ message: `Вы вышли ${email}` }).catch(next);
+  return res.send({ message: `Вы вышли ${email}` }).catch(next);
 };
