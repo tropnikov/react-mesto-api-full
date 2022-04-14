@@ -28,6 +28,16 @@ export const login = (email, password) => {
   }).then(handleResponse);
 };
 
+export const logout = () => {
+  return fetch(`${BASE_URL}/signout`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(handleResponse);
+};
+
 // export const checkTokenValidity = (token) => {
 //   return fetch(`${BASE_URL}/users/me`, {
 //     method: 'GET',

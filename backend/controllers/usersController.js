@@ -156,3 +156,16 @@ module.exports.login = (req, res, next) => {
       // return next(err);
     });
 };
+
+module.exports.logout = (req, res, next) => {
+  res
+    .status(200)
+    .clearCookie('token', {
+      httpOnly: true,
+      sameSite: true,
+    })
+    .catch(next);
+  req.session.destroy = () => {
+    res.redirect('/');
+  };
+};

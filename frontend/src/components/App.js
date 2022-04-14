@@ -255,10 +255,10 @@ function App() {
       .then(() => {
         // if (response.token) {
         // if (res.message) {
-          // localStorage.setItem('token', response.token);
-          setUserEmail(email);
-          setLoggedIn(true);
-          history.push('/');
+        // localStorage.setItem('token', response.token);
+        setUserEmail(email);
+        setLoggedIn(true);
+        history.push('/');
         // }
       })
       .catch((err) => {
@@ -268,8 +268,15 @@ function App() {
 
   const handleLogout = () => {
     // localStorage.removeItem('token');
-    setUserEmail('');
-    setLoggedIn(false);
+    auth
+      .logout()
+      .then(() => {
+        setUserEmail('');
+        setLoggedIn(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
