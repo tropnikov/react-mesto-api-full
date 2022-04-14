@@ -268,15 +268,15 @@ function App() {
 
   const handleLogout = () => {
     // localStorage.removeItem('token');
-    auth
-      .logout()
-      .then(() => {
+    // auth
+    //   .logout()
+    //   .then(() => {
         setUserEmail('');
         setLoggedIn(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
   };
 
   return (

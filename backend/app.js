@@ -6,7 +6,7 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
-const { login, createUser, logout } = require('./controllers/usersController');
+const { login, createUser } = require('./controllers/usersController');
 const NotFoundError = require('./errors/NotFoundError');
 const authUser = require('./middlewares/auth');
 // const cors = require('./middlewares/corsHandler');
@@ -63,7 +63,7 @@ app.use(authUser);
 app.use('/users', usersRoutes);
 app.use('/cards', cardsRoutes);
 
-app.post('/signout', logout);
+// app.post('/signout', logout);
 
 app.use((req, res, next) => {
   next(new NotFoundError('Страница не найдена =('));
