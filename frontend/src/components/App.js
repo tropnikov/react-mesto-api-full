@@ -252,14 +252,14 @@ function App() {
   const handleLogin = (email, password) => {
     auth
       .login(email, password)
-      .then(() => {
+      .then((res) => {
         // if (response.token) {
-        // if (res.message) {
-        // localStorage.setItem('token', response.token);
-        setUserEmail(email);
-        setLoggedIn(true);
-        history.push('/');
-        // }
+        if (res.message) {
+          // localStorage.setItem('token', response.token);
+          setUserEmail(email);
+          setLoggedIn(true);
+          history.push('/');
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -271,12 +271,12 @@ function App() {
     // auth
     //   .logout()
     //   .then(() => {
-        setUserEmail('');
-        setLoggedIn(false);
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
+    setUserEmail('');
+    setLoggedIn(false);
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // });
   };
 
   return (
