@@ -133,7 +133,7 @@ module.exports.login = (req, res, next) => {
         expiresIn: '7d',
       });
       return res
-        .cookie('jwt', token, {
+        .cookie('token', token, {
           maxAge: 36000000 * 24 * 7,
           httpOnly: true,
           sameSite: 'None',

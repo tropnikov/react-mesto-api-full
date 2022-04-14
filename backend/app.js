@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { errors } = require('celebrate');
 const express = require('express');
 const rateLimit = require('express-rate-limit');
@@ -22,12 +23,16 @@ mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.use(express.json());
 
-app.use(cors({
-  credentials: true,
-  origin: ['https://tma.nomoredomains.work',
-    'http://tma.nomoredomains.work',
-    'localhost:3000'],
-}));
+app.use(
+  cors({
+    credentials: true,
+    origin: [
+      'https://tma.nomoredomains.work',
+      'http://tma.nomoredomains.work',
+      'localhost:3000',
+    ],
+  }),
+);
 
 app.use(requestLogger); // логгер запросов
 
