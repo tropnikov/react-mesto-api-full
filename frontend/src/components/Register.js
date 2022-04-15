@@ -52,7 +52,7 @@ const Register = ({ handleRegister }) => {
         </button>
       </form>
       <p className="registration__redirect-text">
-        Уже зарегистрированы?&nbsp;
+        Уже зарегистрированы?{' '}
         <Link to="/sign-in" className="registration__redirect-link hover">
           Войти
         </Link>
