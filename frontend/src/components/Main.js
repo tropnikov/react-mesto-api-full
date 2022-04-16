@@ -1,5 +1,4 @@
 import React from 'react';
-// import api from '../utils/api';
 import Card from './Card';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -13,12 +12,6 @@ function Main({
   cards,
 }) {
   const currentUser = React.useContext(CurrentUserContext);
-
-  // const [userName, setUserName] = React.useState('Жак-Ив Кусто');
-  // const [userDescription, setUserDescription] = React.useState(
-  //   'Исследователь океана'
-  // );
-  // const [userAvatar, setUserAvatar] = React.useState('');
 
   return (
     <main className="content page__content">

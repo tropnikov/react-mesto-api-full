@@ -45,15 +45,6 @@ function App() {
   // * mounting
 
   React.useEffect(() => {
-    // Promise.all([api.getUserData(), api.getInitialCards()])
-    //   .then(([userData, cards]) => {
-    //     setCurrentUser(userData);
-    //     setCards(cards);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
     if (loggedIn) {
       api
         .getUserData()
@@ -197,7 +188,6 @@ function App() {
   // * Auth
 
   const authCheck = () => {
-    // const token = localStorage.getItem('token');
     api
       .getUserData()
       .then((response) => {
@@ -211,6 +201,7 @@ function App() {
       });
   };
 
+  //* used to check token saved in localStorage
   // const tokenCheck = () => {
   //   const token = localStorage.getItem('token');
   //   if (token) {

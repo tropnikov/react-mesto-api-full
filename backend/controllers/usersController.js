@@ -144,26 +144,15 @@ module.exports.login = (req, res, next) => {
           sameSite: true,
         })
         .json({ message: 'Успешная авторизация' });
-      // res.status(200).send({ token });
-      // res
-      //   .cookie('jwt', token, {
-      //     maxAge: 3600000 * 24,
-      //     httpOnly: true,
-      //   })
-      //   .end();
     })
     .catch(() => {
       next(new UnauthorizedError('Невалидный id пользователя'));
-      // return next(err);
     });
 };
 
 module.exports.logout = (req, res) => {
-  // const { email } = req.body;
-  // req.logOut();
   res.status(200).clearCookie('token', {
     httpOnly: true,
     sameSite: true,
   }).json({ message: 'Вы вышли' });
-  // return res.send({ message: 'Вы вышли' }).catch(next);
 };
