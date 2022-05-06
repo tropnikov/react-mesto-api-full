@@ -7,6 +7,6 @@ Frontend https://tma.nomoredomains.work
 
 API https://api.tma.nomoredomains.work
 
-IP 51.250.82.113
+IP 51.250.108.197
 
 пользователь max (не очень понятно как надо было назвать🙂)
