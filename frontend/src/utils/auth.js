@@ -1,4 +1,7 @@
-export const BASE_URL = 'https://api.tma.nomoredomains.work';
+// eslint-disable-next-line
+export const BASE_URL = process.env.NODE_ENV === 'development'
+  ? 'http://localhost:3001'
+  : 'https://api.tma.nomoredomains.work';
 
 const handleResponse = (response) => {
   return response.ok
