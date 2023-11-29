@@ -1,8 +1,4 @@
-const allowedCors = [
-  'https://tma.nomoredomains.work',
-  'http://tma.nomoredomains.work',
-  'localhost:3000',
-];
+const allowedCors = ['https://mesto.tropnikov.dev', 'http://mesto.tropnikov.dev', 'localhost:3000'];
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
 const cors = (req, res, next) => {
@@ -14,10 +10,7 @@ const cors = (req, res, next) => {
 
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-    res.header(
-      'Access-Control-Allow-Headers',
-      headers['access-control-request-headers'],
-    );
+    res.header('Access-Control-Allow-Headers', headers['access-control-request-headers']);
     res.header('Access-Control-Allow-Credentials', true);
     return res.end();
   }

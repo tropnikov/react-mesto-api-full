@@ -146,7 +146,7 @@ module.exports.login = (req, res, next) => {
         .json({ message: 'Успешная авторизация' });
     })
     .catch(() => {
-      next(new UnauthorizedError('Невалидный id пользователя'));
+      next(new UnauthorizedError('Неправильные почта или пароль'));
     });
 };
 

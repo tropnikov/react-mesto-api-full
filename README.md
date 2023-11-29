@@ -4,11 +4,6 @@
 
 ## 
 
-Frontend https://tma.nomoredomains.work  
-
-API https://api.tma.nomoredomains.work
-
-IP 51.250.108.197
 
 ### Работает в том числе локально:
 Для запуска ввести  

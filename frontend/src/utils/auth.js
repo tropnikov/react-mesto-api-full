@@ -1,12 +1,9 @@
 // eslint-disable-next-line
-export const BASE_URL = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:3001'
-  : 'https://api.tma.nomoredomains.work';
+export const BASE_URL =
+  process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://api.mesto.tropnikov.dev';
 
 const handleResponse = (response) => {
-  return response.ok
-    ? response.json()
-    : Promise.reject(`Ошибка: ${response.status}`, response);
+  return response.ok ? response.json() : Promise.reject(`Ошибка: ${response.status}`, response);
 };
 
 export const register = (email, password) => {
