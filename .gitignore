@@ -2,3 +2,5 @@
 launch.json
 .env
 .idea
+.DS_Store
+

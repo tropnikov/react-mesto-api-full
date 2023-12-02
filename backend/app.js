@@ -16,7 +16,7 @@ const { register, signin } = require('./middlewares/validation');
 const cardsRoutes = require('./routes/cardsRoutes');
 const usersRoutes = require('./routes/usersRoutes');
 
-const { PORT = 3002 } = process.env;
+const { PORT = 3001 } = process.env;
 
 const app = express();
 
@@ -27,8 +27,8 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      'https://mesto.tropnikov.dev',
-      'http://mesto.tropnikov.dev',
+      'https://tropnikov.dev',
+      'http://tropnikov.dev',
       'localhost:3000',
       'http://localhost:3000',
       'http://localhost:3001',
