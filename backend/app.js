@@ -28,7 +28,7 @@ app.use(
   cors({
     origin: [
       'https://tropnikov.dev',
-      'http://tropnikov.dev',
+      'https://tropnikov-mesto.vercel.app',
       'localhost:3000',
       'http://localhost:3000',
       'http://localhost:3001',
